@@ -1,0 +1,16 @@
+<div>
+	<h2>NBA Teams</h2>
+	<ul>
+
+		<li ng-repeat="team in teams">{{ team.name }}</li>
+
+	</ul>
+</div>
+<div>
+	<h2>Add a Team</h2>
+	<p>
+		<label>Name:</label>
+		<input ng-model="newTeam.team.name" type="text">
+	</p>
+	<input ng-click="createTeam()" type="submit" value="Create Team">
+</div>	
