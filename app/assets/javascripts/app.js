@@ -25,6 +25,13 @@ app.factory("playerFactory", function($http){
 			callback(output);
 		})
 	}
+	//delete function that makes a delete request to the '/players/<someId>' route
+	//we are passing the information that we get back from the PlayersController to the angular playersController
+	factory.delete = function(id, callback){
+		$http.delete("/players/" + id).success(function(output){
+			callback(output);
+		})
+	}
 	return factory;
 })
 
@@ -38,6 +45,12 @@ app.factory("teamFactory", function($http){
 	//create function that makes a post request to the '/teams' route
 	factory.create = function(teamInfo, callback){
 		$http.post("/teams", teamInfo).success(function(output){
+			callback(output);
+		})
+	}
+	//delete function that makes a delete request to the '/teams/<someId>' route
+	factory.delete = function(id, callback){
+		$http.delete("/teams/" + id).success(function(output){
 			callback(output);
 		})
 	}
@@ -55,6 +68,12 @@ app.controller("playersController", function($scope, playerFactory){
 			$scope.newPlayer = {};
 		});
 	}
+	//calling the delete method from our factory when the button is clicked and updating the $scope with the json data that we get back from our rails PlayersController
+	$scope.deletePlayer = function(playerId){
+		playerFactory.delete(playerId, function(json){
+			$scope.players = json
+		})
+	}	
 })
 app.controller("teamsController", function($scope, teamFactory){
 	teamFactory.index(function(json){
@@ -66,53 +85,14 @@ app.controller("teamsController", function($scope, teamFactory){
 			$scope.newTeam = {};
 		});
 	}
+	//calling the delete method from our factory when the button is clicked and updating the $scope.teams
+	$scope.deleteTeam = function(teamId){
+		teamFactory.delete(teamId, function(json){
+			$scope.teams = json;
+		})
+	}	
+
 })
 
 
 
-// app.controller("playersController", function($scope){
-//     $scope.players = [
-//         {firstName: "Michael", lastName: "Jordan"},
-//         {firstName: "Kobe", lastName: "Bryant"},
-//         {firstName: "Kevin", lastName: "Garnett"},
-//         {firstName: "LeBron", lastName: "James"},
-//         {firstName: "Stephen", lastName: "Curry"},
-//         {firstName: "Jordan", lastName: "Clarkson"},
-//         {firstName: "Derek", lastName: "Fisher"},
-//         {firstName: "Jimmy", lastName: "Butler"}
-//     ]
-// })
-// app.controller("teamsController", function($scope){
-//     $scope.teams = [
-//         {name: "Boston Celtics"},
-//         {name: "Brooklyn Nets"},
-//         {name: "New York Knicks"},
-//         {name: "Philadelphia 76ers"},
-//         {name: "Toronto Rapters"},
-//         {name: "Chicago Bulls"},
-//         {name: "Cleveland Cavaliers"},
-//         {name: "Detroit Pistons"},
-//         {name: "Indiana Pacers"},
-//         {name: "Milwaukee Bucks"},
-//         {name: "Atlanta Hawks"},
-//         {name: "Charlotte Hornets"},
-//         {name: "Miami Heat"},
-//         {name: "Orlando Magic"},
-//         {name: "Washington Wizards"},
-//         {name: "Denver Nuggets"},
-//         {name: "Minnesota Timberwolves"},
-//         {name: "Oklahoma City Thunder"},
-//         {name: "Portland Trail Blazers"},
-//         {name: "Utah Jazz"},
-//         {name: "Golden State Warriors"},
-//         {name: "Los Angeles Clippers"},
-//         {name: "Los Angeles Lakers"},
-//         {name: "Phoenix Suns"},
-//         {name: "Sacramento Kings"},
-//         {name: "Dallas Mavericks"},
-//         {name: "Houston Rockets"},
-//         {name: "Memphis Grizzlies"},
-//         {name: "New Orleans Pelicans"},
-//         {name: "San Antonio Spurs"}
-//     ]
-// })

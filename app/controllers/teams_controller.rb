@@ -9,7 +9,10 @@ class TeamsController < ApplicationController
 		#calling the private method
 		render_teams
 	end
-
+	def destroy
+		Team.find(params[:id]).destroy
+		render_teams
+	end
 	private
 	#private methods that queries all teams in json format
 	def render_teams

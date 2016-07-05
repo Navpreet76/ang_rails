@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
   root 'static_pages#index'
-# --------Player Routes ------ #
+# --------Players Routes ------ #
   get "players" => "players#index"
   post "players" => "players#create"
+  delete "players/:id" => "players#destroy"
 
-# --------Team Routes --------- #  
+# --------Teams Routes --------- #  
   get "teams" => "teams#index"
   post "teams" => "teams#create"
+  delete "teams/:id" => "teams#destroy"
 end

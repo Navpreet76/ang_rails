@@ -1,12 +1,13 @@
-<div>
+<!-- <div>
 	<h2>NBA Players</h2>
 	<ul>
 
 		<li ng-repeat="player in players">{{ player.first_name }} {{ player.last_name }}</li>
 
 	</ul>
-</div>
-<div>
+</div> -->
+<div id="two">
+	<h1>NBA Players</h1>
 	<h2>Add a new Player</h2>
 
 	<p>
@@ -19,4 +20,16 @@
 	</p>
 
 	<input ng-click="createPlayer()" type="submit" value="Create Player">
+</div>
+
+<div id="one">
+
+	<ul>
+		<!--for every player, we have a button with the ng-click directive that will pass the id to our angular playersController -->
+		<li ng-repeat="player in players">{{ player.first_name }} {{ player.last_name }} - <button ng-click="deletePlayer(player.id)">Delete Player</button></li>
+	</ul>
+
+
+
+
 </div>

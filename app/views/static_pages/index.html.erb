@@ -1,17 +1,19 @@
-<!-- <div ng-app="" ng-init="players = [{name: 'Kobe Bryant', team: 'Lakers'},
-								{name: 'Tim Duncan', team: 'Spurs'},
-								{name: 'Derrick Rose', team: 'Knicks'},
-								{name: 'Kevin Durant', team: 'Thunder'},
-								{name: 'John Wall', team: 'Wizards'}]">
-<h1>Is Angular Working???</h1>
-<ul>
-	<li ng-repeat="player in players">{{ player.name }} - {{ player.team }}</li>
 
-</ul>
-</div> -->
 
 <div ng-app="nbaApp">
 	<h1>NBA Information:</h1>
-	<a href="#/partial1">Awesome Players</a> | <a href="#/partial2">Teams</a>
+	
+	<a href="#/partial1">Players</a> | <a href="#/partial2">Teams</a> | <a href="#/partial3">Associations</a>
+	<form>
+		<h2>Search By:</h2>
+		<label>Any:</label>
+		<input type="text" name="any">
+		<label>First Name:</label>
+		<input type="text" name="first_name">
+		<label>Last Name:</label>
+		<input type="text" name="last_name">
+		<label>Team:</label>
+		<input type="text" name="team">
+	</form>
 	<div ng-view=""></div>
 </div>

@@ -9,6 +9,10 @@ class PlayersController < ApplicationController
 		#calling the private method
 		render_players
 	end
+	def destroy
+		Player.find(params[:id]).destroy
+		render_players
+	end
 
 	private
 	#private method that queries all players in json format
